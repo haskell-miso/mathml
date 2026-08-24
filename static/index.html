@@ -1,15 +1,40 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <title>miso-mathml</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>miso-mathml — Live MathML from Haskell</title>
+    <meta name="description" content="Interactive mathematics typeset with native browser MathML, generated from pure Haskell views compiled to WebAssembly with the miso framework. Quadratic roots, the binomial theorem and the golden ratio, all live." />
+    <link rel="canonical" href="https://mathml.haskell-miso.org/" />
+    <meta name="theme-color" content="#0d1117" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mathml.haskell-miso.org/" />
+    <meta property="og:title" content="miso-mathml — Live MathML from Haskell" />
+    <meta property="og:description" content="Interactive equations rendered with native browser MathML from Haskell views, compiled to WebAssembly with miso." />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="miso-mathml — Live MathML from Haskell" />
+    <meta name="twitter:description" content="Interactive equations rendered with native browser MathML from Haskell views, compiled to WebAssembly with miso." />
+    <link rel="icon" href="favicon.ico" />
     <link rel="stylesheet" href="assets/style.css" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "miso-mathml",
+      "url": "https://mathml.haskell-miso.org/",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Web",
+      "description": "Interactive mathematics typeset with native browser MathML, generated from Haskell views compiled to WebAssembly with the miso framework.",
+      "codeRepository": "https://github.com/haskell-miso/miso-mathml"
+    }
+    </script>
   </head>
   <body>
+    <div class="boot">
+      <div class="spin" aria-hidden="true"></div>
+      <p>Loading Haskell WebAssembly&hellip;</p>
+      <noscript>miso-mathml is an interactive WebAssembly demo and needs JavaScript enabled.</noscript>
+    </div>
     <script src="index.js" type="module"></script>
   </body>
 </html>

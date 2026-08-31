@@ -3,7 +3,7 @@
 See [live](https://mathml.haskell-miso.org)
 
 <a href="https://mathml.haskell-miso.org">
-<img width="568" height="97" alt="image" src="https://github.com/user-attachments/assets/4eb46f3b-adf1-4353-bdd6-09bad6e9acc4" />
+<img width="871" height="416" alt="image" src="https://github.com/user-attachments/assets/66cfcc94-28b8-433e-8fc1-b50d2c2aa230" />
 </a>
 
 ## Build and run

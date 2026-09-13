@@ -60,8 +60,8 @@ updateModel = \case
   SetN n     -> binN .= n
   SetDepth n -> cfDepth .= n
 -----------------------------------------------------------------------------
-viewModel :: () -> () -> Model -> View () Model Action
-viewModel _ _ m =
+viewModel :: Model -> View () () Model Action
+viewModel m =
   H.div_
   [ P.class_ "app" ]
   [ H.header_
@@ -96,7 +96,7 @@ viewModel _ _ m =
 -----------------------------------------------------------------------------
 -- * Quadratic explorer
 -----------------------------------------------------------------------------
-quadraticCard :: Model -> View () Model Action
+quadraticCard :: Model -> View () () Model Action
 quadraticCard m =
   H.section_
   [ P.class_ "card" ]
@@ -138,7 +138,7 @@ quadraticCard m =
     disc = b * b - 4 * a * c
 -----------------------------------------------------------------------------
 -- | Render @ax² + bx + c@ with conventional signs (drop 1·, fold + −5 into − 5).
-coeffTerms :: Int -> Int -> Int -> [View () Model Action]
+coeffTerms :: Int -> Int -> Int -> [View () () Model Action]
 coeffTerms a b c =
   concat
   [ lead a (msup_ [] [ mi_ [] [ "x" ], mn_ [] [ "2" ] ])
@@ -159,12 +159,12 @@ coeffTerms a b c =
             (n, Nothing) -> [ mn_ [] [ text (ms n) ] ])
 -----------------------------------------------------------------------------
 -- | A (possibly negative) integer literal in MathML.
-mnum :: Int -> [View () Model Action]
+mnum :: Int -> [View () () Model Action]
 mnum n
   | n < 0     = [ mo_ [] [ "−" ], mn_ [] [ text (ms (abs n)) ] ]
   | otherwise = [ mn_ [] [ text (ms n) ] ]
 -----------------------------------------------------------------------------
-rootsText :: Int -> Int -> Int -> [View () Model Action]
+rootsText :: Int -> Int -> Int -> [View () () Model Action]
 rootsText a b c
   | disc > 0 =
       [ "Two real roots: x₁ = ", em (dec r1), ", x₂ = ", em (dec r2) ]
@@ -185,7 +185,7 @@ rootsText a b c
 -----------------------------------------------------------------------------
 -- * Binomial theorem
 -----------------------------------------------------------------------------
-binomialCard :: Model -> View () Model Action
+binomialCard :: Model -> View () () Model Action
 binomialCard m =
   H.section_
   [ P.class_ "card" ]
@@ -236,7 +236,7 @@ choose n k = foldl (\acc i -> acc * (n - i + 1) `div` i) 1 [ 1 .. k ]
 -----------------------------------------------------------------------------
 -- * Golden ratio continued fraction
 -----------------------------------------------------------------------------
-goldenCard :: Model -> View () Model Action
+goldenCard :: Model -> View () () Model Action
 goldenCard m =
   H.section_
   [ P.class_ "card" ]
@@ -264,7 +264,7 @@ goldenCard m =
   where
     depth = m ^. cfDepth
     approx = fromIntegral (fib (depth + 2)) / fromIntegral (fib (depth + 1)) :: Double
-    continued :: Int -> View () Model Action
+    continued :: Int -> View () () Model Action
     continued 0 = mn_ [] [ "1" ]
     continued k =
       mrow_ []
@@ -280,7 +280,7 @@ fib n = go n 0 1 where
 -----------------------------------------------------------------------------
 -- * Shared helpers
 -----------------------------------------------------------------------------
-mathBlock :: [View () Model Action] -> View () Model Action
+mathBlock :: [View () () Model Action] -> View () () Model Action
 mathBlock children =
   H.div_
   [ P.class_ "math-wrap" ]
@@ -291,7 +291,7 @@ mathBlock children =
     children
   ]
 -----------------------------------------------------------------------------
-slider :: MisoString -> Int -> Int -> Int -> (Int -> Action) -> View () Model Action
+slider :: MisoString -> Int -> Int -> Int -> (Int -> Action) -> View () () Model Action
 slider label lo hi val toAction =
   H.label_
   [ P.class_ "slider" ]
